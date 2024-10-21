@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import RecipeGenerator from './RecipeGenerator';
-import { getRecipeSuggestion } from '../api/recipeApi';
+import { getRecipeSuggestion } from '../services/recipeService';
 
-jest.mock('../api/recipeApi');
+jest.mock('../services/recipeService');
 
 describe('RecipeGenerator', () => {
     it('renders the component', () => {
@@ -22,8 +22,10 @@ describe('RecipeGenerator', () => {
         expect(screen.getByText('Tomate')).toBeInTheDocument();
     });
 
-    it('generates a recipe suggestion', async () => {
-        getRecipeSuggestion.mockResolvedValue('Salade de tomates');
+    it('generates a recipe suggestion', () => {
+        getRecipeSuggestion.mockReturnValue(
+            'Salade de tomates\n\nIngrédients: tomate, oignon\n\nInstructions: ...'
+        );
 
         render(<RecipeGenerator />);
         const input = screen.getByPlaceholderText('Entrez un ingrédient');
@@ -34,10 +36,7 @@ describe('RecipeGenerator', () => {
         fireEvent.click(addButton);
         fireEvent.click(generateButton);
 
-        await waitFor(() => {
-            expect(screen.getByText('Recette suggérée :')).toBeInTheDocument();
-            // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
-            expect(screen.getByText('Salade de tomates')).toBeInTheDocument();
-        });
+        expect(screen.getByText('Recette suggérée :')).toBeInTheDocument();
+        expect(screen.getByText(/Salade de tomates/)).toBeInTheDocument();
     });
 });

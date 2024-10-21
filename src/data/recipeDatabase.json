@@ -1,0 +1,23 @@
+{
+    "recipes": [
+        {
+            "id": 1,
+            "name": "Salade de tomates",
+            "ingredients": [
+                "tomate",
+                "oignon",
+                "huile d'olive",
+                "vinaigre balsamique",
+                "sel",
+                "poivre"
+            ],
+            "instructions": "1. Lavez et coupez les tomates en quartiers.\n2. Émincez finement l'oignon.\n3. Dans un saladier, mélangez les tomates et l'oignon.\n4. Assaisonnez avec l'huile d'olive, le vinaigre balsamique, le sel et le poivre.\n5. Mélangez délicatement et servez frais."
+        },
+        {
+            "id": 2,
+            "name": "Omelette au fromage",
+            "ingredients": ["œuf", "fromage", "lait", "beurre", "sel", "poivre"],
+            "instructions": "1. Battez les œufs dans un bol avec un peu de lait, de sel et de poivre.\n2. Faites fondre le beurre dans une poêle.\n3. Versez les œufs battus dans la poêle chaude.\n4. Quand l'omelette commence à prendre, ajoutez le fromage râpé.\n5. Pliez l'omelette en deux et servez chaud."
+        }
+    ]
+}
